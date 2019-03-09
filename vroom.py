@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import unittest
@@ -14,21 +15,18 @@ class Testing(unittest.TestCase):
     def setUp(self):
         Driver.Initialize()
 
+    # Basic Tests
     def a_test_vroom_homepage(self):
-        HomePage.go_to_url()
-        self.assertEqual("Vroom: Buy, Sell or Trade-In Used Vehicles Online", Driver.Instance.title)
-
-    def a_test_vroom_sellpage(self):
-        HomePage.go_to_url()
-        header_click_sell_trade()
-        self.assertEqual("Sell Your Used Car to Vroom", Driver.Instance.title)
-
-    def test_vroom_sell_whatsitworth(self):
-        sell_page = HomePage().sell_trade()
-        sell_page.click_whats_my_car_worth()
-        self.assertEqual("Sell Your Used Car to Vroom", Driver.Instance.title)
+        self.assertEqual(HomePage().title, Driver.Instance.title)
 
     def a_test_vroom_homepage_search(self):
+        self.assertEqual(HomePage().search("bmw").title, Driver.Instance.title)
+
+    def a_test_vroom_homepage_header_sellpage(self):
+        self.assertEqual(HomePage().sell_trade().title, Driver.Instance.title)
+
+    # Functional Tests
+    def a_test_vroom_homepage_search_results(self):
         search_results_page = HomePage().search("bmw")
         self.assertEqual(search_results_page.title, Driver.Instance.title)
 
@@ -36,7 +34,18 @@ class Testing(unittest.TestCase):
         for car in cars_list:
             print("car={}\n".format(car.text))
 
-        self.assertEqual(20, len(cars_list))
+        self.assertEqual(25, len(cars_list))
+
+    def test_vroom_sell_whatsitworth(self):
+        sell_page = HomePage().sell_trade()
+        vehicle_info = sell_page.click_whats_my_car_worth()
+        self.assertEqual(vehicle_info.title, Driver.Instance.title)
+
+        vehicle_info.set_vin_textfield()
+        vehicle_info.select_trim_by_index()
+        vehicle_info.set_mileage_textfield()
+        vehicle_info.select_exterior_color_by_value()
+        time.sleep(2)
 
     def a_test_api_request(self):
         r = requests.get(url='https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty')
