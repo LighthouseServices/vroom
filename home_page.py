@@ -1,7 +1,10 @@
 #!/usr/bin/env python
-import Driver
+
 from selenium.webdriver.common.by import By
 import time
+import Driver
+from search_results import SearchResultsPage
+from sell_page import SellPage
 
 class HomePage:
     def __init__(self):
@@ -38,16 +41,17 @@ class HomePage:
 
         return SearchResultsPage()
 
-class SearchResultsPage:
-    def __init__(self):
-        self.title = "Buy Low-Mileage Used Cars & Trucks Online - Vroom"
+    def sell_trade(self):
+        header_click_sell_trade()
 
-    @staticmethod
-    def get_cars_list():
-        return Driver.Instance.find_element(By.XPATH, "//*[@id='cars-section']/ul")
+        # TODO: waitUntil page is rendered
+        time.sleep(1)
 
-    def get_all_cars(self):
-        car_list_section = self.get_cars_list()
-        cars_list = car_list_section.find_elements(By.CSS_SELECTOR, "a[href*=inventory]")
+        return SellPage()
 
-        return cars_list
+# Header Functions
+def header_get_sell_trade():
+    return Driver.Instance.find_element(By.CSS_SELECTOR, "a[href*=sell]")
+
+def header_click_sell_trade():
+    return header_get_sell_trade().click()
