@@ -64,7 +64,17 @@ class Testing(unittest.TestCase):
         interior_condition.check_interior_condition_checkbox()
         interior_condition.click_seat_choice_tab()
         interior_condition.click_smoked_in_choice_tab()
-        interior_condition.click_continue_button()
+        sell_review = interior_condition.click_continue_button()
+        time.sleep(5)
+
+        exterior_condition = sell_review.edit_exterior_condition()
+        time.sleep(5)
+
+        exterior_condition.check_exterior_condition_checkbox()
+        exterior_condition.click_hail_damage_choice_tab()
+        exterior_condition.check_mileage_on_tires_checkbox()
+        exterior_condition.check_all_aftermarket_modifications_checkboxes()
+        sell_review = exterior_condition.click_continue_button()
         time.sleep(5)
 
 
