@@ -58,8 +58,9 @@ class Testing(unittest.TestCase):
         sell_review = vehicle_history.click_continue_button()
         time.sleep(5)
 
+        # Potential BUG: Navigates to the Sell Review page and does not automatically navigate to the next step
         interior_condition = sell_review.edit_interior_condition()
-        time.sleep(5)
+        # Potential BUG: END
 
         interior_condition.check_interior_condition_checkbox()
         interior_condition.click_seat_choice_tab()
@@ -68,8 +69,6 @@ class Testing(unittest.TestCase):
         time.sleep(5)
 
         exterior_condition = sell_review.edit_exterior_condition()
-        time.sleep(5)
-
         exterior_condition.check_exterior_condition_checkbox()
         exterior_condition.click_hail_damage_choice_tab()
         exterior_condition.check_mileage_on_tires_checkbox()
@@ -86,6 +85,17 @@ class Testing(unittest.TestCase):
         sell_review = mechanical_condition.click_continue_button()
         time.sleep(5)
 
+        personal_information = sell_review.edit_personal_information()
+        personal_information.set_first_name_textfield()
+        personal_information.set_last_name_textfield()
+        personal_information.set_email_textfield()
+        personal_information.set_phone_number_textfield()
+        personal_information.set_zip_code_textfield()
+        personal_information.select_sell_timing_by_index()
+        personal_information.set_expected_offer_textfield()
+        time.sleep(5)
+
+
 
 
 
@@ -96,7 +106,7 @@ class Testing(unittest.TestCase):
 
     def tearDown(self):
         pass
-        Driver.Instance.close()
+        # Driver.Instance.close()
 
 if __name__ == '__main__':
     unittest.main()
