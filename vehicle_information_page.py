@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 
-import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 import Driver
 from Utils import select_list_by_value, select_list_by_index
-from search_results import SearchResultsPage
+from vehicle_history_page import VehicleHistoryPage
 
 class VehicleInformationPage:
     def __init__(self):
@@ -24,7 +23,7 @@ class VehicleInformationPage:
         Driver.Instance.get("https://www.vroom.com/sell/vehicleinformation")
 
     # Selenium wrappers for all fields
-    # Required Fields
+    ############# Vehicle Information ##############################
 
     # VIN
     @staticmethod
@@ -62,32 +61,31 @@ class VehicleInformationPage:
 
     # NUMBER OF KEYS
     @staticmethod
-    def get_onekey_tab():
-        return Driver.Instance.find_element(
-            By.XPATH, '//*[@id="container-page"]/div/main/div[2]/div[2]/section/form/div[1]/div[2]/div[2]/label/div[1]/div[1]')
-    def click_onekey_tab(self):
-        self.get_onekey_tab().click()
-    @staticmethod
-    def get_twokeys_tab():
-        return Driver.Instance.find_element(
-            By.XPATH, '//*[@id="container-page"]/div/main/div[2]/div[2]/section/form/div[1]/div[2]/div[2]/label/div/div[2]')
-    def click_twokeys_tab(self):
-        self.get_twokeys_tab().click()
+    def get_keys_tab(how_many_keys):
+        number_of_keys = {
+            "1": "div[1]/div[1]",
+            "2": "div/div[2]"
+        }
+        keys_xpath = '//*[@id="container-page"]/div/main/div[2]/div[2]/section/form/div[1]/div[2]/div[2]/label/' + number_of_keys[how_many_keys]
+        return Driver.Instance.find_element(By.XPATH, keys_xpath)
+    def click_keys_tab(self, how_many_keys="2"):
+        self.get_keys_tab(how_many_keys).click()
 
     # OPTIONS
     def get_options_checkbox(self, option_name):
         options_xpath = '//*[@id="container-page"]/div/main/div[2]/div[2]/section/form/div[1]/div[2]/div[3]/div/ul/' + self.available_options[option_name]
         return Driver.Instance.find_element(By.XPATH, options_xpath)
-
     def check_options_checkbox(self, option_name="Sunroof"):
         self.get_options_checkbox(option_name).click()
-
     def check_all_options_checkboxes(self):
         for option_name in self.available_options.keys():
             self.check_options_checkbox(option_name)
 
+    # CONTINUE
+    @staticmethod
+    def get_continue_button():
+        return Driver.Instance.find_element(By.CLASS_NAME, "finish-section-btn-container")
+    def click_continue_button(self):
+        self.get_continue_button().click()
 
-
-
-
-
+        return VehicleHistoryPage()

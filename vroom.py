@@ -48,8 +48,14 @@ class Testing(unittest.TestCase):
         vehicle_info.select_trim_by_index()
         vehicle_info.set_mileage_textfield()
         vehicle_info.select_exterior_color_by_value()
-        vehicle_info.click_twokeys_tab()
+        vehicle_info.click_keys_tab()
         vehicle_info.check_all_options_checkboxes()
+        vehicle_history = vehicle_info.click_continue_button()
+        time.sleep(5)
+
+        vehicle_history.click_accident_choice_tab()
+        vehicle_history.check_title_type_checkbox()
+        vehicle_history.click_continue_button()
         time.sleep(5)
 
     def a_test_api_request(self):
