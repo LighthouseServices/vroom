@@ -77,6 +77,17 @@ class Testing(unittest.TestCase):
         sell_review = exterior_condition.click_continue_button()
         time.sleep(5)
 
+        mechanical_condition = sell_review.edit_mechanical_condition()
+        mechanical_condition.click_vehicle_run_choice_tab()
+        mechanical_condition.check_mechanical_condition_checkbox()
+        mechanical_condition.click_active_warning_light_choice_tab()
+        mechanical_condition.click_flood_or_fire_damage_choice_tab()
+        mechanical_condition.set_anything_else_textfield()
+        sell_review = mechanical_condition.click_continue_button()
+        time.sleep(5)
+
+
+
 
     def a_test_api_request(self):
         r = requests.get(url='https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty')
@@ -85,7 +96,7 @@ class Testing(unittest.TestCase):
 
     def tearDown(self):
         pass
-        # Driver.Instance.close()
+        Driver.Instance.close()
 
 if __name__ == '__main__':
     unittest.main()
