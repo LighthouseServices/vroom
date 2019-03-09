@@ -10,6 +10,18 @@ from search_results import SearchResultsPage
 class VehicleInformationPage:
     def __init__(self):
         self.title = "Complete Your Appraisal"
+        self.available_options = {
+            "Sunroof": "li[1]/div/label/h2",
+            "Navigation": "li[2]/div/label/h2",
+            "Heated Seats": "li[3]/div/label/h2",
+            "Alloy Wheels": "li[4]/div/label/h2",
+            "Bluetooth": "li[5]/div/label/h2",
+            "Other": "li[6]/div/label/h2",
+        }
+
+    @staticmethod
+    def go_to_url():
+        Driver.Instance.get("https://www.vroom.com/sell/vehicleinformation")
 
     # Selenium wrappers for all fields
     # Required Fields
@@ -47,6 +59,35 @@ class VehicleInformationPage:
         self.get_exterior_color_list().select_by_visible_text(trim)
     def select_exterior_color_by_index(self, index="2"):
         self.get_exterior_color_list().select_by_value(index)
+
+    # NUMBER OF KEYS
+    @staticmethod
+    def get_onekey_tab():
+        return Driver.Instance.find_element(
+            By.XPATH, '//*[@id="container-page"]/div/main/div[2]/div[2]/section/form/div[1]/div[2]/div[2]/label/div[1]/div[1]')
+    def click_onekey_tab(self):
+        self.get_onekey_tab().click()
+    @staticmethod
+    def get_twokeys_tab():
+        return Driver.Instance.find_element(
+            By.XPATH, '//*[@id="container-page"]/div/main/div[2]/div[2]/section/form/div[1]/div[2]/div[2]/label/div/div[2]')
+    def click_twokeys_tab(self):
+        self.get_twokeys_tab().click()
+
+    # OPTIONS
+    def get_options_checkbox(self, option_name):
+        options_xpath = '//*[@id="container-page"]/div/main/div[2]/div[2]/section/form/div[1]/div[2]/div[3]/div/ul/' + self.available_options[option_name]
+        return Driver.Instance.find_element(By.XPATH, options_xpath)
+
+    def check_options_checkbox(self, option_name="Sunroof"):
+        self.get_options_checkbox(option_name).click()
+
+    def check_all_options_checkboxes(self):
+        for option_name in self.available_options.keys():
+            self.check_options_checkbox(option_name)
+
+
+
 
 
 
