@@ -55,8 +55,18 @@ class Testing(unittest.TestCase):
 
         vehicle_history.click_accident_choice_tab()
         vehicle_history.check_title_type_checkbox()
-        vehicle_history.click_continue_button()
+        sell_review = vehicle_history.click_continue_button()
         time.sleep(5)
+
+        interior_condition = sell_review.edit_interior_condition()
+        time.sleep(5)
+
+        interior_condition.check_interior_condition_checkbox()
+        interior_condition.click_seat_choice_tab()
+        interior_condition.click_smoked_in_choice_tab()
+        interior_condition.click_continue_button()
+        time.sleep(5)
+
 
     def a_test_api_request(self):
         r = requests.get(url='https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty')
@@ -64,7 +74,8 @@ class Testing(unittest.TestCase):
         print("response={}".format(r.json()))
 
     def tearDown(self):
-        Driver.Instance.close()
+        pass
+        # Driver.Instance.close()
 
 if __name__ == '__main__':
     unittest.main()
