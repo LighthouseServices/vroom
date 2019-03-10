@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
-from selenium.webdriver.common.by import By
 import time
+
+from selenium.webdriver.common.by import By
+
 import Driver
 from pages.base_page import BasePage
 from pages.search_results import SearchResultsPage

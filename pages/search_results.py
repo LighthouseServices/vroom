@@ -1,6 +1,7 @@
 #!/usr/bin/env python
-import Driver
 from selenium.webdriver.common.by import By
+
+import Driver
 from pages.base_page import BasePage
 from pages.buy.buy_page import BuyPage
 

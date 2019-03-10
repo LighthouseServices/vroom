@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 
 import unittest
-import Driver
-from pages.home_page import HomePage
 
 import requests
+
+import Driver
+from pages.home_page import HomePage
 
 
 class VROOM(unittest.TestCase):

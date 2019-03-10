@@ -2,9 +2,10 @@
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
-from pages.base_page import BasePage
+
 import Driver
 from Utils import select_list_by_value, select_list_by_index
+from pages.base_page import BasePage
 from pages.sell.vehicle_history_page import VehicleHistoryPage
 
 
