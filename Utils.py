@@ -14,3 +14,8 @@ def select_list_by_index(select_list, index):
     except IndexError:
         print("ERROR: Option #: {} does not exist!".format(index))
         sys.exit(1)
+
+from random import choice
+from string import ascii_uppercase
+def generate_str(size=4):
+    return ''.join(choice(ascii_uppercase) for i in list(range(size)))
