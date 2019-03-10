@@ -3,10 +3,12 @@
 from selenium.webdriver.common.by import By
 import time
 import Driver
-from search_results import SearchResultsPage
-from sell_page import SellPage
+from pages.base_page import BasePage
+from pages.search_results import SearchResultsPage
+from pages.sell.sell_page import SellPage
 
-class HomePage:
+
+class HomePage(BasePage):
     def __init__(self):
         self.title = "Vroom: Buy, Sell or Trade-In Used Vehicles Online"
         self.go_to_url()
@@ -29,9 +31,10 @@ class HomePage:
         self.get_search_textfield().send_keys(search_str)
 
     def click_search_button(self):
-        return self.get_search_button().click() 
+        return self.get_search_button().click()
 
-    # Business Function(s)
+        # Business Function(s)
+
     def search(self, search_str):
         self.set_search_textfield(search_str)
         self.click_search_button()
@@ -42,16 +45,9 @@ class HomePage:
         return SearchResultsPage()
 
     def sell_trade(self):
-        header_click_sell_trade()
+        self.header_click_sell_trade()
 
         # TODO: waitUntil page is rendered
         time.sleep(1)
 
         return SellPage()
-
-# Header Functions
-def header_get_sell_trade():
-    return Driver.Instance.find_element(By.CSS_SELECTOR, "a[href*=sell]")
-
-def header_click_sell_trade():
-    return header_get_sell_trade().click()
