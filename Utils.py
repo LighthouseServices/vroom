@@ -42,6 +42,17 @@ def generate_email(address, host="test.com", unique_id=None, use_address_only=Fa
 
     return "{}+auto-{}@{}".format(address, unique_id, host)
 
-
 def generate_phone_number(area_code="555", prefix="111", number="2222"):
     return "{}{}{}".format(area_code, prefix, number)
+
+def generate_zip_code(zip_code="10018"):
+    return zip_code
+
+def generate_birth_date(mm="06", dd="11", yyyy="2000"):
+    return "{}/{}/{}".format(mm, dd, yyyy)
+
+def generate_address(address="1375 Broadway"):
+    return address
+
+def generate_city(city="New York"):
+    return city

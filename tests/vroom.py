@@ -16,14 +16,14 @@ class VROOM(unittest.TestCase):
     def a_test_vroom_homepage(self):
         self.assertEqual(HomePage().title, Driver.Instance.title)
 
-    def a_test_vroom_homepage_search(self):
+    def test_vroom_homepage_search(self):
         self.assertEqual(HomePage().search("bmw").title, Driver.Instance.title)
 
     def a_test_vroom_homepage_header_sellpage(self):
         self.assertEqual(HomePage().sell_trade().title, Driver.Instance.title)
 
     # Functional Tests
-    def test_vroom_homepage_search_results(self):
+    def a_test_vroom_homepage_search_results(self):
         search_results_page = HomePage().search("bmw")
         self.assertEqual(search_results_page.title, Driver.Instance.title)
 
