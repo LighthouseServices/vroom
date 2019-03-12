@@ -64,7 +64,7 @@ class VROOM_SELL(unittest.TestCase):
         personal_information.set_expected_offer_textfield()
 
     def tearDown(self):
-        Driver.Instance.close()
+        Driver.Instance.quit()
 
 
 if __name__ == '__main__':

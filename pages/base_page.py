@@ -4,7 +4,6 @@ from selenium.webdriver.common.by import By
 
 import Driver
 
-
 class BasePage:
     def __init__(self):
         self.vin = "1FDAF56F03EB97783"

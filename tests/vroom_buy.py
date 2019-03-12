@@ -22,8 +22,8 @@ class VROOM_BUY(unittest.TestCase):
         credit_application.set_email_textfield()
         credit_application.set_phone_number_textfield()
         credit_application.set_birth_date_textfield()
-
         residential_information = credit_application.continue_button()
+
         residential_information.set_address_textfield()
         residential_information.set_city_textfield()
         residential_information.select_state_by_value()
@@ -32,7 +32,6 @@ class VROOM_BUY(unittest.TestCase):
         residential_information.set_monthly_payment_textfield()
         residential_information.set_years_at_residence_textfield()
         residential_information.set_months_at_residence_textfield()
-
         buy_review = residential_information.continue_button()
 
         income_information = buy_review.edit_income_information()
@@ -44,7 +43,6 @@ class VROOM_BUY(unittest.TestCase):
         income_information.set_phone_number_textfield()
         income_information.set_gross_income_textfield()
         income_information.set_ssn_textfield()
-
         buy_review = income_information.continue_button()
 
         financial_information = buy_review.edit_financial_information()
@@ -80,8 +78,7 @@ class VROOM_BUY(unittest.TestCase):
         contact_information.click_trade_in_choice_tab()
 
     def tearDown(self):
-        pass
-        # Driver.Instance.close()
+        Driver.Instance.quit()
 
 
 if __name__ == '__main__':

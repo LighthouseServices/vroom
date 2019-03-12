@@ -39,7 +39,7 @@ class VROOM(unittest.TestCase):
         print("response={}".format(r.json()))
 
     def tearDown(self):
-        Driver.Instance.close()
+        Driver.Instance.quit()
 
 
 if __name__ == '__main__':
